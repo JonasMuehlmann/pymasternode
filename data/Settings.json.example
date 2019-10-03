@@ -1,0 +1,27 @@
+{
+    "vps": {
+        "location_id": -1,
+        "plan_id": -1,
+        "os_id": -1,
+        "ssh_keys": "-1, -1, -1",
+        "script_id": -1,
+        "private_key_path": "/path/to/file"
+    },
+    "coins": {
+        "CoinA": {
+            "mn_conf_path": "/path/to/file",
+            "wallet_cli_path": "/path/to/file",
+            "node_port": -1
+        },
+        "CoinB": {
+            "mn_conf_path": "/path/to/file",
+            "wallet_cli_path": "/path/to/file",
+            "node_port": -1
+        },
+        "CoinC": {
+            "mn_conf_path": "",
+            "wallet_cli_path": "/path/to/file",
+            "node_port": -1
+        }
+    }
+}
