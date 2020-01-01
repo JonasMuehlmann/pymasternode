@@ -1,0 +1,32 @@
+# This is a sample .typo-ci.yml file, it's used to configure how Typo CI will behave.
+# Add it to the root of your project and push it to github.
+---
+
+# What language dictionaries should it use? Currently Typo CI supports:
+# de
+# en
+# en_GB
+# en_CA
+# en_AU
+# en_ZA
+# es
+# fr
+# is
+# it
+# pt
+# pt_BR
+# sw
+dictionaries:
+  - en
+  - en_GB
+  - en_CA
+  - en_AU
+  - en_ZA
+
+# Any files/folders we should ignore?
+excluded_files:
+  - ".typo-ci.yml"
+
+# Any typos we should ignore?
+excluded_words:
+  - typoci

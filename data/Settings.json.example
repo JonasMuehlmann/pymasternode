@@ -1,26 +1,26 @@
 {
     "vps": {
-        "location_id": -1,
-        "plan_id": -1,
-        "os_id": -1,
-        "ssh_keys": "-1, -1, -1",
+        "location_id": 3,
+        "plan_id": 201,
+        "os_id": 215,
+        "ssh_keys": "",
         "script_id": -1,
-        "private_key_path": "/path/to/file"
+        "ssh_privkey_path": "~/.ssh/id_rsa"
     },
     "coins": {
-        "CoinA": {
-            "mn_conf_path": "/path/to/file",
-            "wallet_cli_path": "/path/to/file",
+        "GLT": {
+            "mn_conf_path": "~/.globaltoken/masternode.conf",
+            "wallet_cli_path": "~/Downloads/globaltoken/bin/globaltoken-cli",
+            "node_port": 9319
+        },
+        "SMART": {
+            "mn_conf_path": "~/.smartcash/smartnode.conf",
+            "wallet_cli_path": "/path/to/cli",
             "node_port": -1
         },
-        "CoinB": {
-            "mn_conf_path": "/path/to/file",
-            "wallet_cli_path": "/path/to/file",
-            "node_port": -1
-        },
-        "CoinC": {
-            "mn_conf_path": "",
-            "wallet_cli_path": "/path/to/file",
+        "PURA": {
+            "mn_conf_path": "/path/to/config",
+            "wallet_cli_path": "/path/to/cli",
             "node_port": -1
         }
     }

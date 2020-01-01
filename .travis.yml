@@ -1,0 +1,40 @@
+language: python
+python:
+  - '3.8'
+  - '3.7'
+  - '3.6'
+  - '3.5'
+  - '3.4'
+os:
+  - linux
+cache: pip
+before_install:
+  - python --version
+  - pip install -U pip
+  - pip install codecov
+install:
+  - pip install -r requirements.txt
+before_script:
+  # Install and start wallet
+  - wget -P ~/Downloads/GLT_wallet.tar.gz https://globaltoken.org/download.php?os=x86_64-linux-gnu
+  - mkdir ~/Downloads/globaltoken
+  - tar -C ~/Downloads/globaltoken -xvf ~/Downloads/GLT_wallet.tar.gz
+
+  # TODO: When home, test if command returns after being synced, or if a while loop is needed to check for the sync completion
+
+  - bash ~/Downloads/globaltoken/bin/globaltokend
+  - bash ~/Downloads/globaltoken/bin/globaltoken-cli -getinfo
+  # Replace ssh keys in project's Settings.json
+  - sed -i 's/\"ssh_keys\":\ \"\",/\"ssh_keys\":\ \"'$VULTR_SSH_KEYS'\"/' $STRAVIS_BUILD_DI/data/Settings.json.example
+  # Replace script id in project's Settings.json
+  - sed -i 's/\"script_id\":\ -1,/\"script_id\":\'$VULTR_SCRIPT_ID',/' $TRAVIS_BUILD_DIR/data/Settings.json.example
+  - mv $STRAVIS_BUILD_DI/data/Settings.json.example $STRAVIS_BUILD_DI/data/Settings.json
+  # Create SSH key file
+  - echo $ID_RSA > ~/.ssh/id_rsa
+  # Set vultr API key in project's api_key_vultr.txt
+  - sed -i 's/your_vultr_api_key_here/'$VULTR_API_KEY'/' $TRAVIS_BUILD_DIR/data/api_key_vultr.txt.example
+  - mv $TRAVIS_BUILD_DIR/data/api_key_vultr.txt.example $TRAVIS_BUILD_DIR/data/api_key_vultr.txt
+script:
+  - pytest
+after_success:
+  - codecov
