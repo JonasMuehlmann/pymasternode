@@ -10,6 +10,6 @@ Settings.json
 pylama.ini
 tox.ini
 TODO.txt
-data/conf_lines.txt
-data/monitoring/last_status.txt
+conf_lines.txt
+last_status.txt
 .style.yapf

@@ -18,7 +18,6 @@ import json
 import re
 import subprocess
 from pathlib import PosixPath
-from subprocess import CompletedProcess
 from typing import Dict, List, Match, Optional, Union
 
 from src import pymasternode

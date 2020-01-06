@@ -28,6 +28,15 @@ OccurrenceStats = NewType("OccurrenceStats", Type[tuple])
 def count_successive_repetitions(iterable: Iterable, wanted: Any) -> OccurrenceStats:
     """Count the first, last, least and most times 'wanted' appeared in 'iterable'.
 
+
+    Args:
+        iterable: An iterator to search in
+        wanted: An item to count
+
+    Returns:
+        occurrence_stats: A namedtuple with the following fields: first, last, least, most and values
+
+
     'OccurrenceStats' contains the following fields:
         first: Successive repetitions in the first 'chain'
 
@@ -53,24 +62,29 @@ def count_successive_repetitions(iterable: Iterable, wanted: Any) -> OccurrenceS
         >>> print(stats.values)
             [1,4,3]
 
-        If 'wanted' is not found, 'OccurrenceStats' will contain a lone 0.
+        If 'wanted' is not found once, 'OccurrenceStats' will contain a lone 0.
 
-        >>> stats= count_successive_repetitions("Foo", "#")
+        >>> stats = count_successive_repetitions("Foo", "#")
         >>> print(stats.values)
             [0]
 
+        If you want to count how many times a specific value of a mapping is repeated,
+        you have to pass a view of the values for 'iterable'.
 
-    Args:
-        iterable: An iterator to search in
-        wanted: An item to count
+        >>> example_dict = {
+                "Foo": "#",
+                "Fooo": "Bar",
+                "Foooo": "#",
+                "Fooooo": "#",
+                "Foooooo": "Bar",
+                "Fooooooo": "#",
+            }
 
-    Returns:
-        occurrence_stats: A namedtuple with the following fields: first, last, least, most and values
+        >>> stats = count_successive_repetitions(example_dict.values(), "#")
+        >>> print(stats.values)
+            [1, 2, 1]
 
     """
-    if len(wanted) != 1:
-        raise RuntimeError("Length of wanted must be 1")
-
     count: int = 0
     last: Any = None
     occurrences: Dict[int, int] = defaultdict(int, {0: 0})
@@ -78,7 +92,7 @@ def count_successive_repetitions(iterable: Iterable, wanted: Any) -> OccurrenceS
     for item in iterable:  # noqa: VNE002
         if item == wanted:
             occurrences[count] += 1
-        elif item != wanted and last == wanted:
+        elif last == wanted:
             count += 1
 
         last = item

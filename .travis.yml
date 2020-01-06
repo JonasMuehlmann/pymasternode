@@ -5,15 +5,13 @@ python:
   - '3.6'
   - '3.5'
   - '3.4'
-os:
-  - linux
+os: linux
 cache: pip
 before_install:
   - python --version
   - pip install -U pip
   - pip install codecov
-install:
-  - pip install -r requirements.txt
+install: pip install -r requirements.txt
 before_script:
   # Install and start wallet
   - wget -P ~/Downloads/GLT_wallet.tar.gz https://globaltoken.org/download.php?os=x86_64-linux-gnu
