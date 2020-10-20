@@ -10,18 +10,8 @@
     "coins": {
         "GLT": {
             "mn_conf_path": "~/.globaltoken/masternode.conf",
-            "wallet_cli_path": "~/Downloads/globaltoken/bin/globaltoken-cli",
+            "wallet_cli_path": "~/.globaltoken/bin/globaltoken-cli",
             "node_port": 9319
         },
-        "SMART": {
-            "mn_conf_path": "~/.smartcash/smartnode.conf",
-            "wallet_cli_path": "/path/to/cli",
-            "node_port": -1
-        },
-        "PURA": {
-            "mn_conf_path": "/path/to/config",
-            "wallet_cli_path": "/path/to/cli",
-            "node_port": -1
-        }
     }
 }
