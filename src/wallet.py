@@ -20,7 +20,7 @@ import subprocess
 from pathlib import PosixPath
 from typing import Dict, List, Match, Optional, Union
 
-from src import pymasternode
+from src import pymasternode, helpers
 from src.helpers import Genkey, Label, Path, ReceivingAddress
 
 MODULE_SETTINGS: Dict[str, Union[str, int, Path]] = {
@@ -41,11 +41,11 @@ def set_coin(name: str) -> None:
     """
     # noinspection PyTypeChecker
     MODULE_SETTINGS["PATH_MN_CONF"] = PosixPath(
-        pymasternode.CONFIG["coins"][name]["mn_conf_path"]
+        pymasternode.CONFIG["coins"][name]["path_mn_conf"]
     ).expanduser()
     # noinspection PyTypeChecker
-    MODULE_SETTINGS["PATH_WALLET_CLI"] = PosixPath(
-        pymasternode.CONFIG["coins"][name]["wallet_cli_path"]
+    MODULE_SETTINGS["PATH_WALLET_BIN"] = PosixPath(
+        pymasternode.CONFIG["coins"][name]["path_wallet_bin"]
     ).expanduser()
     # noinspection PyTypeChecker
     MODULE_SETTINGS["NODE_PORT"] = int(pymasternode.CONFIG["coins"][name]["node_port"])
